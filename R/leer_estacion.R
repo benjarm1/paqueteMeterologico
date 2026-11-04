@@ -39,6 +39,11 @@ leer_estacion <- function(id, destino) {
     }
   )
 
+  return(leer_archivo_estacion(archivo))
+}
+# Lee el csv y comprueba las columnas
+leer_archivo_estacion <- function(archivo) {
+
   datos <- utils::read.csv(archivo)
 
   columnas <- c("id", "fecha", "temperatura_abrigo_150cm")
