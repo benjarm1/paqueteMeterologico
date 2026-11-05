@@ -1,9 +1,16 @@
 Package: paqueteMeteorologico
-Title: What the Package Does (One Line, Title Case)
+Title: Lectura y Analisis de Datos Meteorologicos
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("Benjamin", "Rios Maderna",
+           email = "briosmaderna@mail.austral.edu.ar",
+           role = c("aut", "cre")),
+    person("Matias", "Miailhe",
+           role = "aut")
+    )
+Description: Paquete para leer y analizar datos de estaciones
+    meteorologicas. Permite descargar registros, consultar
+    temperaturas y trabajar con informacion climatica.
 License: MIT + file LICENSE
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
