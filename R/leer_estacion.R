@@ -33,7 +33,7 @@ leer_estacion <- function(id, destino) {
   archivo <- file.path(destino, paste0(id, ".csv"))
 
   tryCatch(
-    utils::download.file(url, archivo, mode = "wb", quiet = TRUE),
+    descargar_csv(url, archivo),
     error = function(e) {
       cli::cli_abort("No se pudo descargar el archivo")
     }
@@ -55,4 +55,8 @@ leer_archivo_estacion <- function(archivo) {
   datos$fecha <- as.Date(datos$fecha)
 
   return(datos)
+}
+# Descarga un CSV al destino indicado
+descargar_csv <- function(url, archivo) {
+  utils::download.file(url, archivo, mode = "wb", quiet = TRUE)
 }
