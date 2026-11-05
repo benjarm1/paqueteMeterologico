@@ -1,6 +1,13 @@
 
 # paqueteMeteorologico
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/benjarm1/paqueteMeterologico/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjarm1/paqueteMeterologico/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/benjarm1/paqueteMeterologico/graph/badge.svg)](https://app.codecov.io/gh/benjarm1/paqueteMeterologico)
+<!-- badges: end -->
+
 Paquete de R desarrollado para la materia Programacion II de la
 Universidad Austral, sede Rosario.
 
