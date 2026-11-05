@@ -12,6 +12,8 @@ Description: Paquete para leer y analizar datos de estaciones
     meteorologicas. Permite descargar registros, consultar
     temperaturas y trabajar con informacion climatica.
 License: MIT + file LICENSE
+URL: https://github.com/benjarm1/paqueteMeterologico
+BugReports: https://github.com/benjarm1/paqueteMeterologico/issues
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

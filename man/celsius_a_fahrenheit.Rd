@@ -15,3 +15,8 @@ temperatura en fahrenheit
 \description{
 pasar de celsius a fahrenheit
 }
+\examples{
+celsius_a_fahrenheit(0)
+celsius_a_fahrenheit(25)
+celsius_a_fahrenheit(-10)
+}
