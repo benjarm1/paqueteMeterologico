@@ -21,7 +21,7 @@ graficar_temperaturas <- function(datos, col_temp = "temperatura",
                                   por = NULL,
                                   titulo = "Temperaturas") {
   tipo <- match.arg(tipo)
-  
+
   if (!is.data.frame(datos)) {
     stop("`datos` debe ser un data.frame.", call. = FALSE)
   }
@@ -33,12 +33,12 @@ graficar_temperaturas <- function(datos, col_temp = "temperatura",
   }
   if (tipo == "linea") {
     if (is.null(col_fecha) || !col_fecha %in% names(datos)) {
-      stop("Para `tipo = \"linea\"` indicá una `col_fecha` válida.", call. = FALSE)
+      stop("Para `tipo = \"linea\"` indica una `col_fecha` valida.", call. = FALSE)
     }
   }
-  
+
   base <- ggplot2::ggplot(datos)
-  
+
   p <- switch(
     tipo,
     linea = {
@@ -70,6 +70,6 @@ graficar_temperaturas <- function(datos, col_temp = "temperatura",
         ggplot2::labs(y = "Temperatura")
     }
   )
-  
+
   p + ggplot2::labs(title = titulo) + ggplot2::theme_minimal()
 }

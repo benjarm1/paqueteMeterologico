@@ -21,6 +21,6 @@ test_that("na.rm = FALSE propaga NA", {
 test_that("valida entradas", {
   expect_error(resumen_temperaturas(1:3), "data.frame")
   expect_error(resumen_temperaturas(datos_prueba(), col_temp = "x"), "No existe")
-  expect_error(resumen_temperaturas(datos_prueba(), col_temp = "ciudad"), "numérica")
+  expect_error(resumen_temperaturas(datos_prueba(), col_temp = "ciudad"), "numerica")
   expect_error(resumen_temperaturas(datos_prueba(), por = "zzz"), "no existe")
 })

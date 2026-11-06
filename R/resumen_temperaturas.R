@@ -24,12 +24,12 @@ resumen_temperaturas <- function(datos, col_temp = "temperatura",
     stop("No existe la columna '", col_temp, "'.", call. = FALSE)
   }
   if (!is.numeric(datos[[col_temp]])) {
-    stop("La columna '", col_temp, "' debe ser numérica.", call. = FALSE)
+    stop("La columna '", col_temp, "' debe ser numerica.", call. = FALSE)
   }
   if (!is.null(por) && !all(por %in% names(datos))) {
     stop("Alguna columna de `por` no existe en `datos`.", call. = FALSE)
   }
-  
+
   calcular <- function(x) {
     if (na.rm) x <- x[!is.na(x)]
     vacio <- length(x) == 0
@@ -42,20 +42,20 @@ resumen_temperaturas <- function(datos, col_temp = "temperatura",
       desvio  = if (length(x) < 2) NA_real_ else stats::sd(x)
     )
   }
-  
+
   if (is.null(por)) {
     return(calcular(datos[[col_temp]]))
   }
-  
+
   grupos <- unique(datos[por])
   grupos <- grupos[do.call(order, unname(as.list(grupos))), , drop = FALSE]
-  
+
   filas <- lapply(seq_len(nrow(grupos)), function(i) {
     idx <- Reduce(`&`, lapply(por, function(p) datos[[p]] == grupos[[p]][i]))
     idx[is.na(idx)] <- FALSE
     cbind(grupos[i, , drop = FALSE], calcular(datos[[col_temp]][idx]))
   })
-  
+
   res <- do.call(rbind, filas)
   rownames(res) <- NULL
   res

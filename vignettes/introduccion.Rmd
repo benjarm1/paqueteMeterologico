@@ -1,9 +1,9 @@
 ---
-title: "Introducción a tempstats"
+title: "Introducción a paqueteMeteorologico"
 output: rmarkdown::html_vignette
 date: "2026-11-04"
 vignette: >
-  %\VignetteIndexEntry{Introducción a tempstats}
+  %\VignetteIndexEntry{Introducción a paqueteMeteorologico}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height
 ```
 
 ```{r setup}
-library(tempstats)
+library(paqueteMeteorologico)
 ```
 
 ## Datos de ejemplo
