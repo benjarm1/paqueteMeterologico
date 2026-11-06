@@ -1,0 +1,50 @@
+---
+title: "Introducción a tempstats"
+output: rmarkdown::html_vignette
+date: "2026-11-04"
+vignette: >
+  %\VignetteIndexEntry{Introducción a tempstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 4)
+```
+
+```{r setup}
+library(tempstats)
+```
+
+## Datos de ejemplo
+
+```{r datos}
+set.seed(123)
+datos <- data.frame(
+  fecha = rep(seq(as.Date("2024-01-01"), by = "day", length.out = 30), 2),
+  ciudad = rep(c("Rosario", "Córdoba"), each = 30),
+  temperatura = c(rnorm(30, 24, 3), rnorm(30, 27, 4))
+)
+head(datos)
+```
+
+## Resumen
+
+```{r resumen}
+resumen_temperaturas(datos)
+resumen_temperaturas(datos, por = "ciudad")
+```
+
+## Gráficos
+
+```{r linea}
+graficar_temperaturas(datos, col_fecha = "fecha", por = "ciudad")
+```
+
+```{r hist}
+graficar_temperaturas(datos, tipo = "histograma", por = "ciudad")
+```
+
+```{r caja}
+graficar_temperaturas(datos, tipo = "caja", por = "ciudad")
+```

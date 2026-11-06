@@ -1,0 +1,13 @@
+url: ~
+template:
+  bootstrap: 5
+
+reference:
+  - title: Resumen
+    contents: resumen_temperaturas
+  - title: Gráficos
+    contents: graficar_temperaturas
+
+articles:
+  - title: Guía
+    contents: introduccion
