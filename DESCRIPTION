@@ -1,0 +1,33 @@
+Package: paqueteMeteorologico
+Title: Lectura y Analisis de Datos Meteorologicos
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Benjamin", "Rios Maderna",
+           email = "briosmaderna@mail.austral.edu.ar",
+           role = c("aut", "cre")),
+    person("Matias", "Miailhe",
+           role = "aut")
+    )
+Description: Paquete para leer y analizar datos de estaciones
+    meteorologicas. Permite descargar registros, consultar
+    temperaturas y trabajar con informacion climatica.
+License: MIT + file LICENSE
+URL: https://github.com/benjarm1/paqueteMeterologico
+BugReports: https://github.com/benjarm1/paqueteMeterologico/issues
+Config/roxygen2/version: 8.1.1
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Imports: 
+    cli,
+    ggplot2,
+    rlang,
+    stats
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 3.5)
+LazyData: true
+VignetteBuilder: knitr
