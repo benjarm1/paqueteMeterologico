@@ -1,3 +1,4 @@
+
 #' Resumen de temperaturas
 #'
 #' Calcula estadísticos descriptivos de una columna de temperaturas,
@@ -18,16 +19,16 @@
 resumen_temperaturas <- function(datos, col_temp = "temperatura",
                                  por = NULL, na.rm = TRUE) {
   if (!is.data.frame(datos)) {
-    stop("`datos` debe ser un data.frame.", call. = FALSE)
+    cli::cli_abort("El argumento {.arg datos} debe ser un data.frame.")
   }
   if (!col_temp %in% names(datos)) {
-    stop("No existe la columna '", col_temp, "'.", call. = FALSE)
+    cli::cli_abort("No existe la columna {.val {col_temp}}.")
   }
   if (!is.numeric(datos[[col_temp]])) {
-    stop("La columna '", col_temp, "' debe ser numerica.", call. = FALSE)
+    cli::cli_abort("La columna {.val {col_temp}} debe ser numerica.")
   }
   if (!is.null(por) && !all(por %in% names(datos))) {
-    stop("Alguna columna de `por` no existe en `datos`.", call. = FALSE)
+    cli::cli_abort("Alguna columna de {.arg por} no existe en {.arg datos}.")
   }
 
   calcular <- function(x) {

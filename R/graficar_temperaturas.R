@@ -23,17 +23,17 @@ graficar_temperaturas <- function(datos, col_temp = "temperatura",
   tipo <- match.arg(tipo)
 
   if (!is.data.frame(datos)) {
-    stop("`datos` debe ser un data.frame.", call. = FALSE)
+    cli::cli_abort("El argumento {.arg datos} debe ser un data.frame.")
   }
   if (!col_temp %in% names(datos)) {
-    stop("No existe la columna '", col_temp, "'.", call. = FALSE)
+    cli::cli_abort("No existe la columna {.val {col_temp}}.")
   }
   if (!is.null(por) && !por %in% names(datos)) {
-    stop("No existe la columna '", por, "'.", call. = FALSE)
+    cli::cli_abort("No existe la columna {.val {por}}.")
   }
   if (tipo == "linea") {
     if (is.null(col_fecha) || !col_fecha %in% names(datos)) {
-      stop("Para `tipo = \"linea\"` indica una `col_fecha` valida.", call. = FALSE)
+      cli::cli_abort("Para el grafico de linea indica una {.arg col_fecha} valida.")
     }
   }
 
