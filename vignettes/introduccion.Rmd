@@ -1,7 +1,8 @@
+
 ---
 title: "Introducción a paqueteMeteorologico"
 output: rmarkdown::html_vignette
-date: "2026-11-04"
+date: "2026-11-26"
 vignette: >
   %\VignetteIndexEntry{Introducción a paqueteMeteorologico}
   %\VignetteEngine{knitr::rmarkdown}
@@ -9,42 +10,175 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 4)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 4
+)
 ```
+
+## Introducción
+
+El paquete paqueteMeteorologico facilita la lectura, el
+procesamiento y la visualización de datos meteorológicos.
+
+En esta guía presentamos las cuatro funciones del paquete
+utilizando registros reales de la estación NH0472.
 
 ```{r setup}
 library(paqueteMeteorologico)
 ```
 
-## Datos de ejemplo
+## 1. Dataset incluido
+
+El paquete contiene un conjunto de datos con 20425
+observaciones y 35 variables meteorológicas.
 
 ```{r datos}
-set.seed(123)
-datos <- data.frame(
-  fecha = rep(seq(as.Date("2024-01-01"), by = "day", length.out = 30), 2),
-  ciudad = rep(c("Rosario", "Córdoba"), each = 30),
-  temperatura = c(rnorm(30, 24, 3), rnorm(30, 27, 4))
-)
-head(datos)
+data("datos", package = "paqueteMeteorologico")
+
+dim(datos)
+head(datos[, c("id", "fecha", "temperatura_abrigo_150cm")])
 ```
 
-## Resumen
+Para trabajar con las fechas, convertimos la columna
+al formato Date y creamos una copia del dataset.
+
+```{r preparar}
+registros <- datos
+registros$fecha <- as.Date(registros$fecha)
+```
+
+## 2. Descargar datos de una estación
+
+La función leer_estacion() permite descargar los registros
+de una estación meteorológica y cargarlos en R.
+
+```{r descarga, eval = FALSE}
+datos_estacion <- leer_estacion("NH0472", tempdir())
+head(datos_estacion)
+```
+
+Este ejemplo requiere conexión a Internet. Por eso,
+para el resto de la guía utilizamos el dataset incluido
+en el paquete.
+
+## 3. Conversión de temperaturas
+
+La función celsius_a_fahrenheit() permite convertir
+temperaturas expresadas en grados Celsius a Fahrenheit.
+
+```{r conversion}
+celsius_a_fahrenheit(25)
+
+head(celsius_a_fahrenheit(
+  registros$temperatura_abrigo_150cm
+))
+```
+
+También podemos aplicarla a una columna completa.
+
+```{r conversion-columna}
+registros$temperatura_fahrenheit <-
+  celsius_a_fahrenheit(registros$temperatura_abrigo_150cm)
+
+head(registros[, c(
+  "temperatura_abrigo_150cm",
+  "temperatura_fahrenheit"
+)])
+```
+
+## 4. Resumen estadístico
+
+La función resumen_temperaturas() calcula la cantidad
+de observaciones, media, mediana, mínimo, máximo
+y desvío estándar.
 
 ```{r resumen}
-resumen_temperaturas(datos)
-resumen_temperaturas(datos, por = "ciudad")
+resumen_temperaturas(
+  registros,
+  col_temp = "temperatura_abrigo_150cm"
+)
 ```
 
-## Gráficos
+También podemos calcular estadísticas por mes.
+
+```{r resumen-mensual}
+registros$mes <- format(registros$fecha, "%m")
+
+resumen_temperaturas(
+  registros,
+  col_temp = "temperatura_abrigo_150cm",
+  por = "mes"
+)
+```
+
+## 5. Visualización de temperaturas
+
+La función graficar_temperaturas() permite generar
+tres tipos de gráficos: líneas, histogramas y diagramas
+de caja.
+
+Para visualizar la evolución diaria seleccionamos
+los registros disponibles del año 1961.
+
+```{r seleccion}
+periodo <- subset(
+  registros,
+  format(fecha, "%Y") == "1961" &
+    !is.na(temperatura_abrigo_150cm)
+)
+```
+
+### Gráfico de líneas
+
+Permite observar la evolución de la temperatura
+a lo largo del tiempo.
 
 ```{r linea}
-graficar_temperaturas(datos, col_fecha = "fecha", por = "ciudad")
+graficar_temperaturas(
+  periodo,
+  col_temp = "temperatura_abrigo_150cm",
+  col_fecha = "fecha",
+  tipo = "linea",
+  titulo = "Temperaturas durante 1961"
+)
 ```
 
-```{r hist}
-graficar_temperaturas(datos, tipo = "histograma", por = "ciudad")
+### Histograma
+
+Permite analizar la distribución de las temperaturas.
+
+```{r histograma}
+graficar_temperaturas(
+  periodo,
+  col_temp = "temperatura_abrigo_150cm",
+  tipo = "histograma",
+  titulo = "Distribución de temperaturas"
+)
 ```
+
+### Diagrama de caja
+
+Permite comparar la distribución de temperaturas
+entre diferentes meses.
 
 ```{r caja}
-graficar_temperaturas(datos, tipo = "caja", por = "ciudad")
+graficar_temperaturas(
+  periodo,
+  col_temp = "temperatura_abrigo_150cm",
+  tipo = "caja",
+  por = "mes",
+  titulo = "Temperaturas por mes"
+)
 ```
+
+## Conclusión
+
+Las funciones del paquete permiten realizar un análisis
+meteorológico desde la obtención de los datos hasta
+su resumen estadístico y visualización.
+
+El dataset incluido permite reproducir los ejemplos
+sin necesidad de descargar archivos externos.
