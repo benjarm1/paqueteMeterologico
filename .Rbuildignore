@@ -6,3 +6,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^_pkgdown\.yml$
 ^paqueteMeteorologico_feedback\.md$
+^data-raw$
