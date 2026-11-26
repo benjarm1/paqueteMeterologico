@@ -1,8 +1,74 @@
-#' Datos meteorologicos de la estacion NH0472
+
+#' Datos meteorológicos de la estación NH0472
 #'
-#' Registros diarios de una estacion meteorologica,
-#' con temperaturas, humedad, viento y otras mediciones.
+#' Conjunto de registros diarios de la estación meteorológica NH0472,
+#' utilizado en la materia Programación II de la Universidad Austral.
+#' Incluye mediciones de temperatura, humedad, precipitaciones,
+#' viento, radiación solar y otras variables meteorológicas.
 #'
-#' @format Un data.frame con 20425 filas y 35 columnas.
-#' @source Datos meteorologicos utilizados en Programacion II.
+#' Los valores NA representan datos faltantes. Algunas variables
+#' no cuentan con mediciones disponibles para esta estación.
+#'
+#' @format Un data.frame con 20425 observaciones y 35 variables:
+#' \describe{
+#'   \item{id}{Código identificador de la estación meteorológica.}
+#'   \item{fecha}{Fecha del registro en formato AAAA-MM-DD (carácter).}
+#'   \item{temperatura_abrigo_150cm}{Temperatura del aire medida bajo abrigo a 150 cm, en grados Celsius.}
+#'   \item{temperatura_abrigo_150cm_maxima}{Temperatura máxima diaria a 150 cm, en grados Celsius.}
+#'   \item{temperatura_abrigo_150cm_minima}{Temperatura mínima diaria a 150 cm, en grados Celsius.}
+#'   \item{temperatura_intemperie_5cm_minima}{Temperatura mínima al aire libre a 5 cm, en grados Celsius.}
+#'   \item{temperatura_intemperie_50cm_minima}{Temperatura mínima al aire libre a 50 cm, en grados Celsius.}
+#'   \item{temperatura_suelo_5cm_media}{Temperatura promedio del suelo a 5 cm de profundidad, en grados Celsius.}
+#'   \item{temperatura_suelo_10cm_media}{Temperatura promedio del suelo a 10 cm de profundidad, en grados Celsius.}
+#'   \item{temperatura_inte_5cm}{Temperatura a la intemperie a 5 cm, en grados Celsius.}
+#'   \item{temperatura_intemperie_150cm_minima}{Temperatura mínima al aire libre a 150 cm, en grados Celsius.}
+#'   \item{humedad_suelo}{Contenido de humedad del suelo. Unidad no confirmada.}
+#'   \item{precipitacion_pluviometrica}{Precipitación acumulada diaria, en milímetros.}
+#'   \item{granizo}{Indicador de ocurrencia de granizo.}
+#'   \item{nieve}{Indicador de ocurrencia de nieve.}
+#'   \item{heliofania_efectiva}{Duración del brillo solar efectivo, en horas.}
+#'   \item{heliofania_relativa}{Proporción de brillo solar efectivo respecto del máximo posible, en porcentaje.}
+#'   \item{tesion_vapor_media}{Presión media del vapor de agua, en hectopascales.}
+#'   \item{humedad_media}{Humedad relativa promedio, en porcentaje.}
+#'   \item{humedad_media_8_14_20}{Humedad relativa promedio correspondiente a las mediciones de las 8, 14 y 20 horas, en porcentaje.}
+#'   \item{rocio_medio}{Temperatura promedio del punto de rocío, en grados Celsius.}
+#'   \item{duracion_follaje_mojado}{Tiempo durante el cual el follaje permanece húmedo. Unidad no confirmada.}
+#'   \item{velocidad_viento_200cm_media}{Velocidad promedio del viento a 2 metros de altura, en km/h.}
+#'   \item{direccion_viento_200cm}{Dirección del viento a 2 metros de altura. Codificación no confirmada.}
+#'   \item{velocidad_viento_1000cm_media}{Velocidad promedio del viento a 10 metros de altura, en km/h.}
+#'   \item{direccion_viento_1000cm}{Dirección del viento a 10 metros de altura. Codificación no confirmada.}
+#'   \item{velocidad_viento_maxima}{Velocidad máxima registrada del viento. Unidad no confirmada.}
+#'   \item{presion_media}{Presión atmosférica promedio. Unidad no confirmada.}
+#'   \item{radiacion_global}{Radiación solar global recibida. Unidad no confirmada.}
+#'   \item{radiacion_neta}{Balance entre la radiación entrante y saliente. Unidad no confirmada.}
+#'   \item{evaporacion_tanque}{Evaporación medida mediante tanque evaporimétrico. Unidad no confirmada.}
+#'   \item{evapotranspiracion_potencial}{Evapotranspiración potencial, en milímetros.}
+#'   \item{profundidad_napa}{Profundidad de la napa freática. Unidad no confirmada.}
+#'   \item{horas_frio}{Cantidad de horas de frío registradas.}
+#'   \item{unidad_frio}{Acumulación de unidades de frío. Método de cálculo no confirmado.}
+#' }
+#'
+#' @details
+#' Se conservan los nombres originales de las columnas.
+#' Las unidades se describen tomando como referencia la documentación
+#' técnica del INTA para mediciones meteorológicas equivalentes.
+#' Las unidades que no pudieron verificarse se indican expresamente.
+#'
+#' @source Instituto Nacional de Tecnología Agropecuaria (INTA),
+#' Sistema de Información y Gestión Agrometeorológica (SIGA).
+#'
+#' Archivo utilizado en Programación II:
+#' \url{https://raw.githubusercontent.com/rse-r/intro-programacion/main/datos/NH0472.csv}
+#'
+#' Material de la materia:
+#' \url{https://intro-programacion.netlify.app/02_lectura.html}
+#'
+#' Referencia técnica de las variables:
+#' \url{https://rdrr.io/github/AgRoMeteorologiaINTA/agromet/src/R/leer-nh.R}
+#'
+#' @examples
+#' data(datos)
+#' head(datos)
+#' dim(datos)
+#' summary(datos$temperatura_abrigo_150cm)
 "datos"
